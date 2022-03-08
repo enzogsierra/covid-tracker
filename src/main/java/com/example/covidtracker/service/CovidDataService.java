@@ -1,6 +1,6 @@
 package com.example.covidtracker.service;
 
-import com.example.covidtracker.models.LocationStats;
+import com.example.covidtracker.models.Country;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URI;
@@ -20,7 +20,9 @@ import org.springframework.stereotype.Service;
 public class CovidDataService 
 {
     private static final String COVID_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
-    private List<LocationStats> allStats = new ArrayList<>(); // Almacena todos los datos
+    
+    private List<Country> allStats = new ArrayList<>(); // Almacena todos los datos
+    private int allNewCases = 0; // Almacena los nuevos casos en todo el mundo
     
     
     @PostConstruct // Ejecuta este codigo cuando la aplicacion se inicia
@@ -39,25 +41,38 @@ public class CovidDataService
         StringReader in = new StringReader(response.body());
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
         
-        List<LocationStats> newStats = new ArrayList<>(); // Almacena temporalmente los nuevos datos
+        // Actualizar lista global
+        List<Country> newStats = new ArrayList<>(); // Almacena temporalmente los nuevos datos
+        int countAllNewCases = 0;
+        
         for(CSVRecord record: records)
         {
             final int lastIdx = record.size() - 1; // Obtener último index (datos del último registro añadido / datos de la última fecha)
-            final int newCases = Integer.parseInt(record.get(lastIdx)) - Integer.parseInt(record.get(lastIdx - 1)); // Restar los casos del ultimo registro con los del anteultimo registro, para obtener la cantidad de casos nuevos
             
-            LocationStats tmp = new LocationStats(); // Instancia temporal
-            tmp.setCountry(record.get("Country/Region"));
-            tmp.setState(record.get("Province/State"));
-            tmp.setLatestTotal(newCases);
-            newStats.add(tmp); // Añadir la fila actual a la nueva lista
+            final String name = record.get(1); // Obtener nombre del país
+            final int totalCases = Integer.parseInt(record.get(lastIdx)); // Obtener el total de casos
+            final int newCases = totalCases - Integer.parseInt(record.get(lastIdx - 1)); // Obtener la cantidad de casos nuevos (restar los casos del ultimo registro con los del anteultimo registro)
             
-            //System.out.println(tmp.toString());
+            Country country = new Country();
+            country.setName(name);
+            country.setNewCases(newCases);
+            country.setTotalCases(totalCases);
+            newStats.add(country); // Añadir este país a la nueva lista
+            
+            countAllNewCases += newCases;
         }
         
+        //
         this.allStats = newStats; // Actualizar la lista global con los nuevos datos
+        this.allNewCases = countAllNewCases;
+        
     }
 
-    public List<LocationStats> getAllStats() {
+    public List<Country> getAllStats() {
         return allStats;
+    }
+    
+    public int getAllNewCases() {
+        return allNewCases;
     }
 }
