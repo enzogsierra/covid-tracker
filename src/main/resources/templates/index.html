@@ -27,11 +27,11 @@
         
         <main class="container">
             <div class="mb-2">
-                <label for="searchByCountry" class="form-label">Search by country</label>
-                <input type="text" id="searchByCountry" class="form-control" th:placeholder="${randomCountryName}">
+                <label for="searchCountry" class="form-label">Search by country</label>
+                <input type="text" id="searchCountry" class="form-control" th:placeholder="${randomCountryName}">
             </div>
 
-            <table class="table table-striped" id="sortTable">
+            <table class="table table-striped" id="countryList">
                 <thead>
                     <tr>
                         <th>Country</th>
@@ -49,5 +49,8 @@
                 </tbody>
             </table>
         </main>
+        
+        <!-- Scripts -->
+        <script src="/app.js"></script>
     </body>
 </html>
