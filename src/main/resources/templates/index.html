@@ -10,24 +10,32 @@
     </head>
     
     <body>
-        <header class="container">
-            <h1 class="text-center">COVID-19 Tracker</h1>
-            <p class="fs-4 text-center">
-                This application shows information about COVID-19 cases around the world.<br>
-                Data source is extracted from <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank">CSSEGISandData</a> repository
-            </p>
+        <header class="mb-4 bg-dark text-white">
+            <div class="container py-4">    
+                <h1 class="text-center">COVID-19 Web Tracker</h1>
+                <p class="fs-4 text-center">
+                    This web application shows information about COVID-19 cases around the world.<br>
+                    Data source is extracted from <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank">CSSEGISandData</a> repository.
+                </p>
+            </div>
         </header>
         
-        <div class="p-5 mb-4 bg-dark text-white">
+        <!--<div class="p-5 mb-4 bg-dark text-white">
             <div class="container py-5">
                 <h2 class="display-5 fw-bold" th:text="${allNewCases}"></h2>
                 <p class="fw-light col-md-8 fs-4">COVID-19 cases reported today around the world</p>
             </div>
-        </div>
+        </div>-->
+        
         
         <main class="container">
+            <div class="mb-5 h-100 p-5 bg-light border rounded-3">
+                <h2 class="display-5 fw-bold" th:text="${allNewCases}"></h2>
+                <p class="fw-light col-md-8 fs-4">New COVID-19 cases reported around the world</p>
+            </div>
+            
             <div class="mb-2">
-                <label for="searchCountry" class="form-label">Search by country</label>
+                <label for="searchCountry" class="form-label text-muted">Search by country</label>
                 <input type="text" id="searchCountry" class="form-control" th:placeholder="${randomCountryName}">
             </div>
 
@@ -36,15 +44,15 @@
                     <tr>
                         <th>Country</th>
                         <th>New cases</th>
-                        <th>Total cases</th>
+                        <th>All-time cases</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr th:each="country: ${countries}">
-                        <td th:texT="${country.name}"></td>
-                        <td th:text="${country.newCases}"></td>
-                        <td th:text="${country.totalCases}"></td>
+                        <td th:text="${country.name}" id="country-name"></td>
+                        <td th:text="${country.newCases}" id="country-newcases"></td>
+                        <td th:text="${country.totalCases}" id="country-totalcases"></td>
                     </tr>
                 </tbody>
             </table>

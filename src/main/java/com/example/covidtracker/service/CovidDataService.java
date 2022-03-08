@@ -29,6 +29,10 @@ public class CovidDataService
     @Scheduled(cron = "* * 1 * * *") // s:m:h:d:m:y - Ejecuta este código cada 1 hora
     public void fetchCovidData() throws IOException, InterruptedException
     {
+        List<Country> newStats = new ArrayList<>(); // Almacena temporalmente los nuevos datos
+        int countAllNewCases = 0; 
+        
+        
         // Enviar petición Http
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest
@@ -37,13 +41,13 @@ public class CovidDataService
                                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         
-        // Leer el formato csv
+        // Leer csv
         StringReader in = new StringReader(response.body());
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
         
-        // Actualizar lista global
-        List<Country> newStats = new ArrayList<>(); // Almacena temporalmente los nuevos datos
-        int countAllNewCases = 0;
+        //
+        int i = -1;
+        String lastName = ""; 
         
         for(CSVRecord record: records)
         {
@@ -53,13 +57,26 @@ public class CovidDataService
             final int totalCases = Integer.parseInt(record.get(lastIdx)); // Obtener el total de casos
             final int newCases = totalCases - Integer.parseInt(record.get(lastIdx - 1)); // Obtener la cantidad de casos nuevos (restar los casos del ultimo registro con los del anteultimo registro)
             
-            Country country = new Country();
-            country.setName(name);
-            country.setNewCases(newCases);
-            country.setTotalCases(totalCases);
-            newStats.add(country); // Añadir este país a la nueva lista
+            // Hay países que aparecen varias veces en el registro
+            // Para evitar duplicar países en la lista (newStats)
+            // Se verifica que el país (nombre) sea diferente al país del registro/iteracion anterior
+            if(!name.equals(lastName)) // Si es un nuevo país para añadir a la lista (el nombre en la actual iteracion es diferente al anterior)
+            {
+                i++; // Subir al siguiente index
+                
+                Country country = new Country();
+                country.setName(name);
+                country.setNewCases(0);
+                country.setTotalCases(0);
+                newStats.add(country); // Añadir el nuevo pais a la lista
+            }
             
-            countAllNewCases += newCases;
+            Country tmp = newStats.get(i); // Acceder al país en la lista según el índice
+            tmp.setNewCases(tmp.getNewCases() + newCases);
+            tmp.setTotalCases(tmp.getTotalCases() + totalCases);
+            
+            countAllNewCases += newCases; // Sumar a la cantidad de casos nuevos globalmente
+            lastName = name; // Guardar el último país
         }
         
         //
