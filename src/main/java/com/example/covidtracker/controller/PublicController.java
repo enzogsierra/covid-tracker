@@ -26,6 +26,7 @@ public class PublicController
         Random rand = new Random();
         String randomCountryName = allStats.get(rand.nextInt(allStats.size())).getName();
         
+        // Models
         model.addAttribute("allNewCases", allNewCases);
         model.addAttribute("countries", allStats);
         model.addAttribute("randomCountryName", randomCountryName);

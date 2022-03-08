@@ -20,39 +20,40 @@
             </div>
         </header>
         
-        <!--<div class="p-5 mb-4 bg-dark text-white">
-            <div class="container py-5">
-                <h2 class="display-5 fw-bold" th:text="${allNewCases}"></h2>
-                <p class="fw-light col-md-8 fs-4">COVID-19 cases reported today around the world</p>
-            </div>
-        </div>-->
-        
-        
         <main class="container">
+            <!-- Worldwide cases -->
             <div class="mb-5 h-100 p-5 bg-light border rounded-3">
-                <h2 class="display-5 fw-bold" th:text="${allNewCases}"></h2>
+                <h2 class="display-5 fw-bold" th:text="${#numbers.formatDecimal(allNewCases, 0, 'DEFAULT', 0, 'POINT')}"></h2>
                 <p class="fw-light col-md-8 fs-4">New COVID-19 cases reported around the world</p>
             </div>
             
-            <div class="mb-2">
+            
+            <!-- Search input -->
+            <div class="mb-3">
                 <label for="searchCountry" class="form-label text-muted">Search by country</label>
                 <input type="text" id="searchCountry" class="form-control" th:placeholder="${randomCountryName}">
             </div>
+            
 
-            <table class="table table-striped" id="countryList">
-                <thead>
+            <!-- Table - country list -->
+            <table class="table table-bordered" id="countryList">
+                <caption id="table-caption"><span th:text="${countries.size()}"></span> countries.</caption>
+                
+                <thead class="table-dark">
                     <tr>
-                        <th>Country</th>
-                        <th>New cases</th>
-                        <th>All-time cases</th>
+                        <th role="button" id="th-sortable" data-type="string">Country</th>
+                        <th role="button" id="th-sortable" data-type="int">New cases</th>
+                        <th role="button" id="th-sortable" data-type="int">All-time cases</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr th:each="country: ${countries}">
                         <td th:text="${country.name}" id="country-name"></td>
-                        <td th:text="${country.newCases}" id="country-newcases"></td>
-                        <td th:text="${country.totalCases}" id="country-totalcases"></td>
+                        <!-- <td th:text="${country.newCases}" id="country-newcases"></td>
+                        <td th:text="${country.totalCases}" id="country-totalcases"></td> -->
+                        <td th:text="${#numbers.formatDecimal(country.newCases, 0, 'DEFAULT', 0, 'POINT')}" id="country-newcases"></td>
+                        <td th:text="${#numbers.formatDecimal(country.totalCases, 0, 'DEFAULT', 0, 'POINT')}" id="country-newcases"></td>
                     </tr>
                 </tbody>
             </table>
