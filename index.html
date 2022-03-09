@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>COVID-19 Tracker Application (Demo)</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    </head>
+    
+    <body>
+        <header class="mb-4 bg-dark text-white">
+            <div class="container py-4">    
+                <h1 class="text-center">COVID-19 Web Tracker (Demo page)</h1>
+                <p class="fs-4 text-center">
+                    This web application shows information about COVID-19 cases around the world.<br>
+                    Data source is extracted from <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank">CSSEGISandData</a> repository.
+                </p>
+            </div>
+        </header>
+        
+        <main class="container">
+            <!-- Worldwide cases -->
+            <div class="mb-5 h-100 p-5 bg-light border rounded-3">
+                <h2 class="display-5 fw-bold">1,845,109</h2>
+                <p class="fw-light col-md-8 fs-4">New COVID-19 cases reported around the world</p>
+            </div>
+            
+            
+            <!-- Search input -->
+            <div class="mb-3">
+                <label for="searchCountry" class="form-label text-muted">Search by country</label>
+                <input type="text" id="searchCountry" class="form-control" placeholder="Antarctica">
+            </div>
+            
+
+            <!-- Table - country list -->
+            <table class="table table-bordered" id="countryList">
+                <caption id="table-caption"><span>198</span> countries.</caption>
+                
+                <thead class="table-dark">
+                    <tr>
+                        <th role="button" id="th-sortable" data-type="string">Country</th>
+                        <th role="button" id="th-sortable" data-type="int">New cases</th>
+                        <th role="button" id="th-sortable" data-type="int">All-time cases</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td id="country-name">Afghanistan</td>
+                        <td id="country-newcases">353</td>
+                        <td id="country-newcases">175,353</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Albania</td>
+                        <td id="country-newcases">87</td>
+                        <td id="country-newcases">272,337</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Algeria</td>
+                        <td id="country-newcases">26</td>
+                        <td id="country-newcases">265,323</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Andorra</td>
+                        <td id="country-newcases">90</td>
+                        <td id="country-newcases">38,710</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Angola</td>
+                        <td id="country-newcases">23</td>
+                        <td id="country-newcases">98,829</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Antarctica</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">11</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Antigua and Barbuda</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">7,455</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Argentina</td>
+                        <td id="country-newcases">6,474</td>
+                        <td id="country-newcases">8,949,362</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Armenia</td>
+                        <td id="country-newcases">140</td>
+                        <td id="country-newcases">421,541</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Australia</td>
+                        <td id="country-newcases">30,691</td>
+                        <td id="country-newcases">3,459,870</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Austria</td>
+                        <td id="country-newcases">30,939</td>
+                        <td id="country-newcases">2,924,852</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Azerbaijan</td>
+                        <td id="country-newcases">276</td>
+                        <td id="country-newcases">789,757</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Bahamas</td>
+                        <td id="country-newcases">4</td>
+                        <td id="country-newcases">33,180</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Bahrain</td>
+                        <td id="country-newcases">1,896</td>
+                        <td id="country-newcases">530,730</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Bangladesh</td>
+                        <td id="country-newcases">446</td>
+                        <td id="country-newcases">1,948,148</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Barbados</td>
+                        <td id="country-newcases">156</td>
+                        <td id="country-newcases">56,376</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Belarus</td>
+                        <td id="country-newcases">742</td>
+                        <td id="country-newcases">932,949</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Belgium</td>
+                        <td id="country-newcases">7,495</td>
+                        <td id="country-newcases">3,609,122</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Belize</td>
+                        <td id="country-newcases">76</td>
+                        <td id="country-newcases">56,952</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Benin</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">26,575</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Bhutan</td>
+                        <td id="country-newcases">441</td>
+                        <td id="country-newcases">15,560</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Bolivia</td>
+                        <td id="country-newcases">326</td>
+                        <td id="country-newcases">895,424</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Bosnia and Herzegovina</td>
+                        <td id="country-newcases">167</td>
+                        <td id="country-newcases">372,645</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Botswana</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">263,950</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Brazil</td>
+                        <td id="country-newcases">74,487</td>
+                        <td id="country-newcases">29,152,318</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Brunei</td>
+                        <td id="country-newcases">3,984</td>
+                        <td id="country-newcases">97,018</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Bulgaria</td>
+                        <td id="country-newcases">2,180</td>
+                        <td id="country-newcases">1,105,968</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Burkina Faso</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">20,751</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Burma</td>
+                        <td id="country-newcases">1,401</td>
+                        <td id="country-newcases">601,020</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Burundi</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">38,178</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Cabo Verde</td>
+                        <td id="country-newcases">5</td>
+                        <td id="country-newcases">55,903</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Cambodia</td>
+                        <td id="country-newcases">357</td>
+                        <td id="country-newcases">133,065</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Cameroon</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">119,322</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Canada</td>
+                        <td id="country-newcases">4,862</td>
+                        <td id="country-newcases">3,349,164</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Central African Republic</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">14,320</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Chad</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">7,258</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Chile</td>
+                        <td id="country-newcases">11,764</td>
+                        <td id="country-newcases">3,214,326</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">China</td>
+                        <td id="country-newcases">28,812</td>
+                        <td id="country-newcases">637,181</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Colombia</td>
+                        <td id="country-newcases">760</td>
+                        <td id="country-newcases">6,073,416</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Comoros</td>
+                        <td id="country-newcases">3</td>
+                        <td id="country-newcases">8,051</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Congo (Brazzaville)</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">24,020</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Congo (Kinshasa)</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">86,154</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Costa Rica</td>
+                        <td id="country-newcases">1,458</td>
+                        <td id="country-newcases">818,996</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Cote d&#39;Ivoire</td>
+                        <td id="country-newcases">3</td>
+                        <td id="country-newcases">81,559</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Croatia</td>
+                        <td id="country-newcases">1,016</td>
+                        <td id="country-newcases">1,065,001</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Cuba</td>
+                        <td id="country-newcases">447</td>
+                        <td id="country-newcases">1,073,951</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Cyprus</td>
+                        <td id="country-newcases">3,695</td>
+                        <td id="country-newcases">338,517</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Czechia</td>
+                        <td id="country-newcases">10,419</td>
+                        <td id="country-newcases">3,642,514</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Denmark</td>
+                        <td id="country-newcases">15,490</td>
+                        <td id="country-newcases">2,938,246</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Diamond Princess</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">712</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Djibouti</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">15,550</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Dominica</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">11,248</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Dominican Republic</td>
+                        <td id="country-newcases">126</td>
+                        <td id="country-newcases">576,129</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Ecuador</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">841,575</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Egypt</td>
+                        <td id="country-newcases">882</td>
+                        <td id="country-newcases">492,774</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">El Salvador</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">156,364</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Equatorial Guinea</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">15,894</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Eritrea</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">9,716</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Estonia</td>
+                        <td id="country-newcases">3,305</td>
+                        <td id="country-newcases">520,407</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Eswatini</td>
+                        <td id="country-newcases">24</td>
+                        <td id="country-newcases">69,331</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Ethiopia</td>
+                        <td id="country-newcases">40</td>
+                        <td id="country-newcases">469,047</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Fiji</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">64,034</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Finland</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">694,142</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">France</td>
+                        <td id="country-newcases">93,692</td>
+                        <td id="country-newcases">23,346,927</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Gabon</td>
+                        <td id="country-newcases">3</td>
+                        <td id="country-newcases">47,562</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Gambia</td>
+                        <td id="country-newcases">15</td>
+                        <td id="country-newcases">11,963</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Georgia</td>
+                        <td id="country-newcases">2,783</td>
+                        <td id="country-newcases">1,629,065</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Germany</td>
+                        <td id="country-newcases">261,063</td>
+                        <td id="country-newcases">16,326,087</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Ghana</td>
+                        <td id="country-newcases">612</td>
+                        <td id="country-newcases">160,640</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Greece</td>
+                        <td id="country-newcases">21,057</td>
+                        <td id="country-newcases">2,538,168</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Grenada</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">13,690</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Guatemala</td>
+                        <td id="country-newcases">2,847</td>
+                        <td id="country-newcases">795,808</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Guinea</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">36,427</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Guinea-Bissau</td>
+                        <td id="country-newcases">5</td>
+                        <td id="country-newcases">8,038</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Guyana</td>
+                        <td id="country-newcases">14</td>
+                        <td id="country-newcases">63,076</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Haiti</td>
+                        <td id="country-newcases">15</td>
+                        <td id="country-newcases">30,400</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Holy See</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">29</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Honduras</td>
+                        <td id="country-newcases">1,015</td>
+                        <td id="country-newcases">414,714</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Hungary</td>
+                        <td id="country-newcases">1,387</td>
+                        <td id="country-newcases">1,807,285</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Iceland</td>
+                        <td id="country-newcases">3,316</td>
+                        <td id="country-newcases">150,467</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">India</td>
+                        <td id="country-newcases">4,575</td>
+                        <td id="country-newcases">42,975,883</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Indonesia</td>
+                        <td id="country-newcases">30,148</td>
+                        <td id="country-newcases">5,800,253</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Iran</td>
+                        <td id="country-newcases">5,841</td>
+                        <td id="country-newcases">7,102,159</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Iraq</td>
+                        <td id="country-newcases">888</td>
+                        <td id="country-newcases">2,309,816</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Ireland</td>
+                        <td id="country-newcases">4,355</td>
+                        <td id="country-newcases">1,326,946</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Israel</td>
+                        <td id="country-newcases">7,464</td>
+                        <td id="country-newcases">3,688,096</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Italy</td>
+                        <td id="country-newcases">60,753</td>
+                        <td id="country-newcases">13,109,527</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Jamaica</td>
+                        <td id="country-newcases">15</td>
+                        <td id="country-newcases">128,228</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Japan</td>
+                        <td id="country-newcases">53,938</td>
+                        <td id="country-newcases">5,486,083</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Jordan</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">1,654,677</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Kazakhstan</td>
+                        <td id="country-newcases">169</td>
+                        <td id="country-newcases">1,392,338</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Kenya</td>
+                        <td id="country-newcases">21</td>
+                        <td id="country-newcases">323,115</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Kiribati</td>
+                        <td id="country-newcases">9</td>
+                        <td id="country-newcases">3,000</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Korea, South</td>
+                        <td id="country-newcases">342,427</td>
+                        <td id="country-newcases">5,212,118</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Kosovo</td>
+                        <td id="country-newcases">32</td>
+                        <td id="country-newcases">226,680</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Kuwait</td>
+                        <td id="country-newcases">436</td>
+                        <td id="country-newcases">624,205</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Kyrgyzstan</td>
+                        <td id="country-newcases">17</td>
+                        <td id="country-newcases">200,658</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Laos</td>
+                        <td id="country-newcases">231</td>
+                        <td id="country-newcases">144,551</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Latvia</td>
+                        <td id="country-newcases">8,137</td>
+                        <td id="country-newcases">712,271</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Lebanon</td>
+                        <td id="country-newcases">1,006</td>
+                        <td id="country-newcases">1,080,381</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Lesotho</td>
+                        <td id="country-newcases">9</td>
+                        <td id="country-newcases">32,716</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Liberia</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">7,384</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Libya</td>
+                        <td id="country-newcases">386</td>
+                        <td id="country-newcases">498,839</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Liechtenstein</td>
+                        <td id="country-newcases">27</td>
+                        <td id="country-newcases">13,222</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Lithuania</td>
+                        <td id="country-newcases">4,740</td>
+                        <td id="country-newcases">938,968</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Luxembourg</td>
+                        <td id="country-newcases">777</td>
+                        <td id="country-newcases">188,748</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">MS Zaandam</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">9</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Madagascar</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">63,791</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Malawi</td>
+                        <td id="country-newcases">12</td>
+                        <td id="country-newcases">85,452</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Malaysia</td>
+                        <td id="country-newcases">31,490</td>
+                        <td id="country-newcases">3,680,953</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Maldives</td>
+                        <td id="country-newcases">273</td>
+                        <td id="country-newcases">173,337</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Mali</td>
+                        <td id="country-newcases">3</td>
+                        <td id="country-newcases">30,401</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Malta</td>
+                        <td id="country-newcases">159</td>
+                        <td id="country-newcases">72,130</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Marshall Islands</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">7</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Mauritania</td>
+                        <td id="country-newcases">2</td>
+                        <td id="country-newcases">58,654</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Mauritius</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">169,796</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Mexico</td>
+                        <td id="country-newcases">8,939</td>
+                        <td id="country-newcases">5,575,608</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Micronesia</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">1</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Moldova</td>
+                        <td id="country-newcases">352</td>
+                        <td id="country-newcases">505,996</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Monaco</td>
+                        <td id="country-newcases">66</td>
+                        <td id="country-newcases">9,605</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Mongolia</td>
+                        <td id="country-newcases">189</td>
+                        <td id="country-newcases">913,444</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Montenegro</td>
+                        <td id="country-newcases">104</td>
+                        <td id="country-newcases">231,115</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Morocco</td>
+                        <td id="country-newcases">78</td>
+                        <td id="country-newcases">1,161,776</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Mozambique</td>
+                        <td id="country-newcases">10</td>
+                        <td id="country-newcases">225,150</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Namibia</td>
+                        <td id="country-newcases">8</td>
+                        <td id="country-newcases">157,358</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Nepal</td>
+                        <td id="country-newcases">74</td>
+                        <td id="country-newcases">977,641</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Netherlands</td>
+                        <td id="country-newcases">66,297</td>
+                        <td id="country-newcases">7,012,134</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">New Zealand</td>
+                        <td id="country-newcases">22,495</td>
+                        <td id="country-newcases">286,752</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Nicaragua</td>
+                        <td id="country-newcases">98</td>
+                        <td id="country-newcases">18,203</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Niger</td>
+                        <td id="country-newcases">2</td>
+                        <td id="country-newcases">8,769</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Nigeria</td>
+                        <td id="country-newcases">118</td>
+                        <td id="country-newcases">254,777</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">North Macedonia</td>
+                        <td id="country-newcases">340</td>
+                        <td id="country-newcases">300,106</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Norway</td>
+                        <td id="country-newcases">10,217</td>
+                        <td id="country-newcases">1,325,909</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Oman</td>
+                        <td id="country-newcases">360</td>
+                        <td id="country-newcases">385,513</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Pakistan</td>
+                        <td id="country-newcases">758</td>
+                        <td id="country-newcases">1,516,150</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Palau</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">3,864</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Panama</td>
+                        <td id="country-newcases">382</td>
+                        <td id="country-newcases">758,312</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Papua New Guinea</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">41,533</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Paraguay</td>
+                        <td id="country-newcases">410</td>
+                        <td id="country-newcases">644,609</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Peru</td>
+                        <td id="country-newcases">901</td>
+                        <td id="country-newcases">3,528,939</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Philippines</td>
+                        <td id="country-newcases">442</td>
+                        <td id="country-newcases">3,668,710</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Poland</td>
+                        <td id="country-newcases">13,176</td>
+                        <td id="country-newcases">5,760,498</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Portugal</td>
+                        <td id="country-newcases">15,068</td>
+                        <td id="country-newcases">3,352,874</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Qatar</td>
+                        <td id="country-newcases">146</td>
+                        <td id="country-newcases">358,564</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Romania</td>
+                        <td id="country-newcases">5,461</td>
+                        <td id="country-newcases">2,776,910</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Russia</td>
+                        <td id="country-newcases">65,569</td>
+                        <td id="country-newcases">16,835,844</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Rwanda</td>
+                        <td id="country-newcases">7</td>
+                        <td id="country-newcases">129,567</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Saint Kitts and Nevis</td>
+                        <td id="country-newcases">1</td>
+                        <td id="country-newcases">5,537</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Saint Lucia</td>
+                        <td id="country-newcases">13</td>
+                        <td id="country-newcases">22,808</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Saint Vincent and the Grenadines</td>
+                        <td id="country-newcases">1</td>
+                        <td id="country-newcases">8,321</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Samoa</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">41</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">San Marino</td>
+                        <td id="country-newcases">58</td>
+                        <td id="country-newcases">14,581</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Sao Tome and Principe</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">5,939</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Saudi Arabia</td>
+                        <td id="country-newcases">219</td>
+                        <td id="country-newcases">747,934</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Senegal</td>
+                        <td id="country-newcases">4</td>
+                        <td id="country-newcases">85,772</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Serbia</td>
+                        <td id="country-newcases">2,588</td>
+                        <td id="country-newcases">1,930,437</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Seychelles</td>
+                        <td id="country-newcases">178</td>
+                        <td id="country-newcases">39,605</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Sierra Leone</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">7,666</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Singapore</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">846,341</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Slovakia</td>
+                        <td id="country-newcases">13,853</td>
+                        <td id="country-newcases">2,216,994</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Slovenia</td>
+                        <td id="country-newcases">3,171</td>
+                        <td id="country-newcases">907,630</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Solomon Islands</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">8,150</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Somalia</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">26,400</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">South Africa</td>
+                        <td id="country-newcases">1,436</td>
+                        <td id="country-newcases">3,686,556</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">South Sudan</td>
+                        <td id="country-newcases">10</td>
+                        <td id="country-newcases">17,025</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Spain</td>
+                        <td id="country-newcases">23,149</td>
+                        <td id="country-newcases">11,159,574</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Sri Lanka</td>
+                        <td id="country-newcases">2,227</td>
+                        <td id="country-newcases">653,029</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Sudan</td>
+                        <td id="country-newcases">6</td>
+                        <td id="country-newcases">61,631</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Summer Olympics 2020</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">865</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Suriname</td>
+                        <td id="country-newcases">44</td>
+                        <td id="country-newcases">78,623</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Sweden</td>
+                        <td id="country-newcases">4,817</td>
+                        <td id="country-newcases">2,460,783</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Switzerland</td>
+                        <td id="country-newcases">26,089</td>
+                        <td id="country-newcases">2,974,778</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Syria</td>
+                        <td id="country-newcases">55</td>
+                        <td id="country-newcases">55,140</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Taiwan*</td>
+                        <td id="country-newcases">53</td>
+                        <td id="country-newcases">20,922</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Tajikistan</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">17,786</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Tanzania</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">33,620</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Thailand</td>
+                        <td id="country-newcases">22,073</td>
+                        <td id="country-newcases">3,088,873</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Timor-Leste</td>
+                        <td id="country-newcases">6</td>
+                        <td id="country-newcases">22,768</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Togo</td>
+                        <td id="country-newcases">5</td>
+                        <td id="country-newcases">36,838</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Tonga</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">1,059</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Trinidad and Tobago</td>
+                        <td id="country-newcases">432</td>
+                        <td id="country-newcases">130,964</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Tunisia</td>
+                        <td id="country-newcases">11,090</td>
+                        <td id="country-newcases">1,016,894</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Turkey</td>
+                        <td id="country-newcases">37,407</td>
+                        <td id="country-newcases">14,425,638</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">US</td>
+                        <td id="country-newcases">29,805</td>
+                        <td id="country-newcases">79,369,007</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Uganda</td>
+                        <td id="country-newcases">14</td>
+                        <td id="country-newcases">163,416</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Ukraine</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">5,040,518</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">United Arab Emirates</td>
+                        <td id="country-newcases">323</td>
+                        <td id="country-newcases">883,593</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">United Kingdom</td>
+                        <td id="country-newcases">63,149</td>
+                        <td id="country-newcases">19,446,892</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Uruguay</td>
+                        <td id="country-newcases">1,752</td>
+                        <td id="country-newcases">857,635</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Uzbekistan</td>
+                        <td id="country-newcases">27</td>
+                        <td id="country-newcases">236,994</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Vanuatu</td>
+                        <td id="country-newcases">10</td>
+                        <td id="country-newcases">52</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Venezuela</td>
+                        <td id="country-newcases">149</td>
+                        <td id="country-newcases">516,966</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Vietnam</td>
+                        <td id="country-newcases">194,815</td>
+                        <td id="country-newcases">4,776,873</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">West Bank and Gaza</td>
+                        <td id="country-newcases">598</td>
+                        <td id="country-newcases">652,298</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Winter Olympics 2022</td>
+                        <td id="country-newcases">1</td>
+                        <td id="country-newcases">533</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Yemen</td>
+                        <td id="country-newcases">0</td>
+                        <td id="country-newcases">11,781</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Zambia</td>
+                        <td id="country-newcases">249</td>
+                        <td id="country-newcases">314,159</td>
+                    </tr>
+                    <tr>
+                        <td id="country-name">Zimbabwe</td>
+                        <td id="country-newcases">633</td>
+                        <td id="country-newcases">240,343</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        
+        <!-- Scripts -->
+        <script src="/app.js"></script>
+    </body>
+</html>
